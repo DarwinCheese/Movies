@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.android.volley.toolbox.StringRequest;
 import com.example.darwin.movies.R;
 import com.example.darwin.movies.Domain.Movie;
 import com.example.darwin.movies.Domain.MovieMapper;
@@ -95,61 +96,62 @@ public class MovieRequest {
     /**
      * Verstuur een POST met nieuwe ToDo.
      */
-//    public void handlePostToDo(final Movie newTodo) {
-//
-//        Log.i(TAG, "handlePostToDo");
-//
-//        // Haal het token uit de prefs
-//        SharedPreferences sharedPref = context.getSharedPreferences(
-//                context.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-//        final String token = sharedPref.getString(context.getString(R.string.saved_token), "dummy default token");
-//        if(token != null && !token.equals("dummy default token")) {
-//
-//            //
-//            // Maak een JSON object met username en password. Dit object sturen we mee
-//            // als request body (zoals je ook met Postman hebt gedaan)
-//            //
-//            String body = "{\"Titel\":\"" + newTodo.getMovieTitle() + "\",\"Beschrijving\":\"" + newTodo.getContents() + "\"}";
-//
-//            try {
-//                JSONObject jsonBody = new JSONObject(body);
-//                Log.i(TAG, "handlePostToDo - body = " + jsonBody);
-//                JsonObjectRequest jsObjRequest = new JsonObjectRequest
-//                        (Request.Method.POST, Config.URL_FILMS, jsonBody, new Response.Listener<JSONObject>() {
-//
-//                            @Override
-//                            public void onResponse(JSONObject response) {
-//                                Log.i(TAG, response.toString());
-//                                // Het toevoegen is gelukt
-//                                // Hier kun je kiezen: of een refresh van de hele lijst ophalen
-//                                // en de ListView bijwerken ... Of alleen de ene update toevoegen
-//                                // aan de ArrayList. Wij doen dat laatste.
-//                                listener.onToDoAvailable(newTodo);
-//                            }
-//                        }, new Response.ErrorListener() {
-//                            @Override
-//                            public void onErrorResponse(VolleyError error) {
-//                                // Error - send back to caller
-//                                listener.onToDosError(error.toString());
-//                            }
-//                        }){
-//                    @Override
-//                    public Map<String, String> getHeaders() throws AuthFailureError {
-//                        Map<String, String> headers = new HashMap<>();
-//                        headers.put("Content-Type", "application/json");
-//                        headers.put("Authorization", "Bearer " + token);
-//                        return headers;
-//                    }
-//                };
-//
-//                // Access the RequestQueue through your singleton class.
-//                VolleyRequestQueue.getInstance(context).addToRequestQueue(jsObjRequest);
-//            } catch (JSONException e) {
-//                Log.e(TAG, e.getMessage());
-//                listener.onToDosError(e.getMessage());
-//            }
-//        }
-//    }
+    public void handleRentMovie(final Movie newRental) {
+
+        Log.i(TAG, "handleRentMovie");
+
+        // Haal het token uit de prefs
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                context.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        final String token = sharedPref.getString(context.getString(R.string.saved_token), "dummy default token");
+        final String userId = sharedPref.getString(context.getString(R.string.user_id), "customer id");
+        if(token != null && !token.equals("dummy default token")) {
+
+            //
+            // Maak een JSON object met username en password. Dit object sturen we mee
+            // als request body (zoals je ook met Postman hebt gedaan)
+            //
+
+            Log.i("movie", "ewo");
+            //String body = "";
+
+            //JSONObject jsonBody = new JSONObject(body);
+            //Log.i(TAG, "handlePostToDo - body = " + jsonBody);
+            StringRequest postRequest = new StringRequest(Request.Method.POST, Config.URL_RENTALS + "/" + userId + "/" + newRental.getMovieId(),
+                    new Response.Listener<String>(){
+//                        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+//                        (Request.Method.POST, Config.URL_RENTALS + "/" + userId + "/" + newRental.getMovieId(), new Response.Listener<JSONObject>() {
+
+                        //@Override
+                        public void onResponse(String response) {
+                            Log.i(TAG, response);
+                            // Het toevoegen is gelukt
+                            // Hier kun je kiezen: of een refresh van de hele lijst ophalen
+                            // en de ListView bijwerken ... Of alleen de ene update toevoegen
+                            // aan de ArrayList. Wij doen dat laatste.
+                            listener.onMovieAvailable(newRental);
+                            listener.onRental(response);
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // Error - send back to caller
+                            listener.onMoviesError(error.toString());
+                        }
+                    }){
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> headers = new HashMap<>();
+                    headers.put("Content-Type", "application/json");
+                    headers.put("Authorization", "Bearer " + token);
+                    return headers;
+                }
+            };
+
+            // Access the RequestQueue through your singleton class.
+            VolleyRequestQueue.getInstance(context).addToRequestQueue(postRequest);
+        }
+    }
 
     //
     // Callback interface - implemented by the calling class (MainActivity in our case).
@@ -163,5 +165,8 @@ public class MovieRequest {
 
         // Callback to handle serverside API errors
         void onMoviesError(String message);
+
+        void onRental(String message);
+
     }
 }

@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 public class Movie implements Serializable {
 
+    private String MovieId;
     private String Movietitle;
     private String Description;
     private String ReleaseYear;
@@ -17,6 +18,13 @@ public class Movie implements Serializable {
     private int RentalDuration;
 
 
+    public String getMovieId() {
+        return MovieId;
+    }
+
+    public void setMovieId(String movieId) {
+        MovieId = movieId;
+    }
 
     public String getMovietitle() {
         return Movietitle;

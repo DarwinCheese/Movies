@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class MovieMapper {
     //public static final String MOVIE_RESULT = "result";
+    public static final String MOVIE_ID = "film_id";
     public static final String MOVIE_TITLE = "title";
     public static final String MOVIE_DESCRIPTION = "description";
     public static final String MOVIE_RELEASE_YEAR = "release_year";
@@ -45,6 +46,7 @@ public class MovieMapper {
 
                 Movie movie = new Movie();
 
+                movie.setMovieId(jsonProduct.getString(MOVIE_ID));
                 movie.setDescription(jsonProduct.getString(MOVIE_DESCRIPTION));
                 movie.setMovietitle(jsonProduct.getString(MOVIE_TITLE));
                 movie.setReleaseYear(jsonProduct.getString(MOVIE_RELEASE_YEAR));

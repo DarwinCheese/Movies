@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public final String TAG = this.getClass().getSimpleName();
 
     // The name for communicating Intents extras
-    public final static String MOVIE_DATA = "TODOS";
+    public final static String MOVIE_DATA = "MOVIES";
 
     // A request code for returning data from Intent - is supposed to be unique.
     public static final int MY_REQUEST_CODE = 1234;
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // Het token is opgeslagen in SharedPreferences.
         // Mocht er geen token zijn, of het token is expired, dan moeten we
         // eerst opnieuw inloggen.
-//        if(tokenAvailable()){
+        if(tokenAvailable()){
             setContentView(R.layout.activity_main);
 
             listViewMovies = (ListView) findViewById(R.id.listViewMovies);
@@ -66,17 +66,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             //
             Log.d(TAG, "Token gevonden - Movies ophalen!");
             getMovies();
-//        } else {
+        } else {
             //
             // Blijkbaar was er geen token - eerst inloggen dus
             //
-//            Log.d(TAG, "Geen token gevonden - inloggen dus");
-//            Intent login = new Intent(getApplicationContext(), LoginActivity.class);
-//            startActivity(login);
-//            // Sluit de huidige activity. Dat voorkomt dat de gebuiker via de
-//            // back-button zonder inloggen terugkeert naar het homescreen.
-//            finish();
-//        }
+            Log.d(TAG, "Geen token gevonden - inloggen dus");
+            Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(login);
+            // Sluit de huidige activity. Dat voorkomt dat de gebuiker via de
+            // back-button zonder inloggen terugkeert naar het homescreen.
+            finish();
+        }
     }
 
     /**
@@ -164,6 +164,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private void getMovies(){
         MovieRequest request = new MovieRequest(getApplicationContext(), this);
         request.handleGetAllMovies();
+    }
+
+    public void onRental(String message){
+
     }
 
     /**

@@ -11,6 +11,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import com.example.darwin.movies.R;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by Darwin on 3-7-2017.
  */
@@ -62,6 +64,7 @@ public class MovieAdapter extends BaseAdapter {
             // Maak een ViewHolder en koppel de schermvelden aan de velden uit onze eigen row.
             viewHolder = new ViewHolder();
             viewHolder.textViewTitle = (TextView) convertView.findViewById(R.id.rowMovieTitle);
+            viewHolder.textViewYear = (TextView) convertView.findViewById(R.id.rowMovieYear);
             // viewHolder.textViewContents = (TextView) convertView.findViewById(R.id.rowToDoDate);
 
             // Sla de viewholder op in de convertView
@@ -73,12 +76,14 @@ public class MovieAdapter extends BaseAdapter {
 
         Movie bolMovie = bolMovieArrayList.get(position);
         viewHolder.textViewTitle.setText(bolMovie.getMovietitle());
+        viewHolder.textViewYear.setText(bolMovie.getReleaseYear());
 
         return convertView;
     }
 
     private static class ViewHolder {
         public TextView textViewTitle;
+        public TextView textViewYear;
         // public TextView textViewContents;
     }
 }
