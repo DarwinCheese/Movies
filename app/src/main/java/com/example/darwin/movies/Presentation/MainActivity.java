@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             //
             // We hebben een token. Je zou eerst nog kunnen valideren dat het token nog
             // geldig is; dat doen we nu niet.
-            // Vul de lijst met ToDos
+            // Vul de lijst met Movies
             //
             Log.d(TAG, "Token gevonden - Movies ophalen!");
             getMovies();
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     /**
-     * Callback function - handle an ArrayList of ToDos
+     * Callback function - handle an ArrayList of Movies
      *
      * @param movieArrayList
      */
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     /**
-     * Callback function - handle a single ToDo
+     * Callback function - handle a single Movie
      *
      * @param movie
      */
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     /**
-     * Start the activity to GET all ToDos from the server.
+     * Start the activity to GET all Movies from the server.
      */
     private void getMovies(){
         MovieRequest request = new MovieRequest(getApplicationContext(), this);
@@ -170,12 +170,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-    /**
-     * Start the activity to POST a new ToDo to the server.
-     */
-//    private void postTodo(Movie movie){
-//        ToDoRequest request = new ToDoRequest(getApplicationContext(), this);
-//        request.handlePostToDo(todo);
-//    }
+
 
 }

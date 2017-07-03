@@ -157,10 +157,10 @@ public class MovieRequest {
     // Callback interface - implemented by the calling class (MainActivity in our case).
     //
     public interface MovieListener {
-        // Callback function to return a fresh list of ToDos
+        // Callback function to return a fresh list of Movies
         void onMoviesAvailable(ArrayList<Movie> movies);
 
-        // Callback function to handle a single added ToDo.
+        // Callback function to handle a single added Movie.
         void onMovieAvailable(Movie movie);
 
         // Callback to handle serverside API errors

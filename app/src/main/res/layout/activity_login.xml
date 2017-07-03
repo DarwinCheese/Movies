@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context="com.example.darwin.movies.Presentation.LoginActivity">
 
 
@@ -50,6 +51,7 @@
             android:layout_height="wrap_content"
             android:height="60dip"
             android:layout_marginTop="130dip"
+            android:background="@drawable/button"
             android:text="Login"/>
 
         <!-- Button to Registration Screen -->
@@ -60,7 +62,8 @@
             android:height="60dip"
             android:layout_marginTop="15dip"
             android:text="Register"
-            android:onClick="changelayout"/>
+            android:onClick="changelayout"
+            android:background="@drawable/button"/>
 
 
         <TextView

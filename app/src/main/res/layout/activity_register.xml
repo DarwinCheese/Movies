@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context="com.example.darwin.movies.Presentation.RegisterActivity">
 
     <LinearLayout
@@ -13,7 +14,8 @@
         android:layout_height="wrap_content"
         android:padding="25dip"
         tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp">
+        tools:layout_editor_absoluteX="8dp"
+        android:background="@drawable/background">
 
         <!--  Email -->
         <TextView
@@ -76,7 +78,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dip"
             android:height="60dip"
-            android:text="Register" />
+            android:text="Register"
+            android:background="@drawable/button"/>
 
 
     </LinearLayout>

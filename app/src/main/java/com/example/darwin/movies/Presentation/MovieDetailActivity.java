@@ -26,6 +26,9 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
     private TextView movieTitle;
     private TextView movieDescription;
     private TextView txtResponseMsg;
+    private TextView movieLength;
+    private TextView movieRating;
+    private TextView movieReleaseYear;
     private Button rentButton;
 
     public final String TAG = this.getClass().getSimpleName();
@@ -36,6 +39,9 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_movie_detail);
 
         movieTitle = (TextView) findViewById(R.id.movieDetailTitle);
+        movieReleaseYear = (TextView) findViewById(R.id.movieDetailYear);
+        movieRating = (TextView) findViewById(R.id.movieDetailRating);
+        movieLength = (TextView) findViewById(R.id.movieDetailLength);
         txtResponseMsg = (TextView) findViewById(R.id.txtResponse);
         movieDescription = (TextView) findViewById(R.id.movieDetailDescription);
         rentButton = (Button) findViewById(R.id.movieDetailRentButton);
@@ -47,7 +53,10 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
         Log.i(TAG, movie.toString());
 
         movieTitle.setText(movie.getMovietitle());
-        movieDescription.setText(movie.getDescription());
+        movieDescription.setText("Description: " + movie.getDescription());
+        movieReleaseYear.setText("Release Year: " + movie.getReleaseYear());
+        movieRating.setText("Rating: " + movie.getRating());
+        movieLength.setText("Length: " + movie.getLength() + " minutes" );
     }
 
     @Override

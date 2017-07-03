@@ -18,6 +18,9 @@ public class MovieMapper {
     public static final String MOVIE_TITLE = "title";
     public static final String MOVIE_DESCRIPTION = "description";
     public static final String MOVIE_RELEASE_YEAR = "release_year";
+    public static final String MOVIE_RATING = "rating";
+    public static final String MOVIE_LENGTH = "length";
+
 //    public static final String MOVIE_STATUS = "Status";
 
     /**
@@ -50,6 +53,9 @@ public class MovieMapper {
                 movie.setDescription(jsonProduct.getString(MOVIE_DESCRIPTION));
                 movie.setMovietitle(jsonProduct.getString(MOVIE_TITLE));
                 movie.setReleaseYear(jsonProduct.getString(MOVIE_RELEASE_YEAR));
+                movie.setRating(jsonProduct.getString(MOVIE_RATING));
+                movie.setLength(jsonProduct.getInt(MOVIE_LENGTH));
+
                 Log.i("MovieMapper", "Movie: " + movie.getMovietitle());
 
                 result.add(movie);
